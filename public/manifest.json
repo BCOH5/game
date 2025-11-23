@@ -1,0 +1,18 @@
+{
+    "name": "술-스크린: 익스트림 음주 골프",
+    "short_name": "술스크린",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#000000",
+    "theme_color": "#39ff14",
+    "description": "익스트림 음주 골프 게임",
+    "orientation": "portrait",
+    "icons": [
+        {
+            "src": "/icon.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ]
+}
