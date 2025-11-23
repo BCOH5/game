@@ -102,20 +102,20 @@ function App() {
     }
   };
 
-  return (
-    <div style={{
-      width: '100%',
-      height: '100%',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      paddingTop: '20px',
-      paddingBottom: '20px',
-      overflowY: 'auto'
-    }}>
-      <Header showTitle={gameState === 'SETUP'} />
+  return <div style={{
+    width: '100%',
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    paddingTop: '10px', // Reduced from 20px
+    paddingBottom: '10px', // Reduced from 20px
+    overflowY: 'auto'
+  }}>
+    <Header showTitle={gameState === 'SETUP'} />
 
-      {gameState === 'SETUP' && (
+    {
+      gameState === 'SETUP' && (
         <div style={{ width: '90%', maxWidth: '600px' }}>
           <PlayerManager
             players={players}
@@ -144,9 +144,11 @@ function App() {
           </button>
           <WarningPopup />
         </div>
-      )}
+      )
+    }
 
-      {(gameState === 'PLAYING' || gameState === 'SETTLEMENT' || gameState === 'FINISHED') && (
+    {
+      (gameState === 'PLAYING' || gameState === 'SETTLEMENT' || gameState === 'FINISHED') && (
         <div style={{ width: '95%', maxWidth: '1000px' }}>
           <Scorecard players={players} currentHole={currentHole} />
 
@@ -158,13 +160,17 @@ function App() {
             />
           )}
         </div>
-      )}
+      )
+    }
 
-      {gameState === 'SETTLEMENT' && (
+    {
+      gameState === 'SETTLEMENT' && (
         <SettlementModal results={settlementResults} onNext={nextHole} />
-      )}
+      )
+    }
 
-      {gameState === 'FINISHED' && (
+    {
+      gameState === 'FINISHED' && (
         <div className="pixel-box" style={{ textAlign: 'center', padding: '2rem', border: '4px solid var(--neon-yellow)' }}>
           <h2 className="text-neon-yellow" style={{ fontSize: '2rem' }}>🏆 GAME OVER 🏆</h2>
           <div style={{ fontSize: '1.5rem', margin: '20px 0' }}>
@@ -175,8 +181,9 @@ function App() {
           <p>가장 적게 마신 당신이 승자!</p>
           <button onClick={() => window.location.reload()} style={{ padding: '10px', cursor: 'pointer' }}>RESTART</button>
         </div>
-      )}
-    </div>
+      )
+    }
+  </div >
   );
 }
 

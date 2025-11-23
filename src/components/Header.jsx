@@ -8,28 +8,29 @@ const Header = ({ showTitle = true }) => {
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
-      padding: '1rem',
+      padding: '0.5rem', // Reduced padding
       width: '100%',
       textAlign: 'center'
     }}>
       <h1 style={{
-        fontSize: '1.5rem',
+        fontSize: '1rem', // Reduced font size
         margin: '0',
-        textShadow: '4px 4px 0px #000',
+        textShadow: '2px 2px 0px #000', // Reduced shadow
         color: 'white',
-        letterSpacing: '2px'
+        letterSpacing: '1px'
       }}>
-        🎮 술-스크린 : 익스트림 음주 골프
+        🎮 술-스크린
       </h1>
       <div style={{
-        marginTop: '10px',
+        marginTop: '5px',
         backgroundColor: 'var(--neon-yellow)',
         color: 'black',
-        padding: '5px 15px',
+        padding: '2px 10px', // Reduced padding
         fontWeight: 'bold',
-        boxShadow: '4px 4px 0px #000'
+        fontSize: '0.7rem', // Reduced font size
+        boxShadow: '2px 2px 0px #000'
       }}>
-        미션: 친목 도모 및 음주 가무 (생존하라!)
+        미션: 생존하라!
       </div>
     </div>
   );

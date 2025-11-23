@@ -49,12 +49,12 @@ const HoleInput = ({ players, currentHole, onCompleteHole }) => {
     };
 
     return (
-        <div className="pixel-box" style={{ width: '100%', maxWidth: '700px', margin: '0 auto' }}>
-            <h2 className="text-neon-yellow" style={{ textAlign: 'center', marginBottom: '20px' }}>
+        <div className="pixel-box" style={{ width: '100%', maxWidth: '700px', margin: '0 auto', padding: '10px' }}>
+            <h2 className="text-neon-yellow" style={{ textAlign: 'center', marginBottom: '10px', fontSize: '1rem' }}>
                 ⛳ HOLE {currentHole} 입력
             </h2>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr 1fr 0.5fr', gap: '10px', marginBottom: '10px', borderBottom: '2px solid white', paddingBottom: '5px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr 1fr 0.6fr', gap: '5px', marginBottom: '5px', borderBottom: '2px solid white', paddingBottom: '2px', fontSize: '0.6rem' }}>
                 <div>PLAYER</div>
                 <div style={{ textAlign: 'center' }}>SCORE</div>
                 <div style={{ textAlign: 'center', color: 'var(--neon-red)' }}>PENALTY</div>
@@ -62,28 +62,29 @@ const HoleInput = ({ players, currentHole, onCompleteHole }) => {
             </div>
 
             {players.map(p => (
-                <div key={p.id} style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr 1fr 0.5fr', gap: '10px', marginBottom: '15px', alignItems: 'center' }}>
-                    <div style={{ fontSize: '1.2rem' }}>{p.name}</div>
+                <div key={p.id} style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr 1fr 0.6fr', gap: '5px', marginBottom: '8px', alignItems: 'center' }}>
+                    <div style={{ fontSize: '0.8rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{p.name}</div>
 
                     {/* Score Control */}
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '50px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '35px' }}>
                         <button
                             onClick={() => handleChange(p.id, 'score', (inputs[p.id]?.score || 0) - 1)}
                             style={{
                                 background: 'var(--neon-blue)',
                                 border: 'none',
-                                width: '40px',
+                                width: '25px',
                                 height: '100%',
                                 cursor: 'pointer',
                                 fontWeight: 'bold',
-                                fontSize: '1.5rem',
-                                color: 'black'
+                                fontSize: '1rem',
+                                color: 'black',
+                                padding: 0
                             }}
                         >-</button>
                         <div style={{
                             flex: 1,
                             textAlign: 'center',
-                            fontSize: '1.5rem',
+                            fontSize: '1rem',
                             backgroundColor: 'black',
                             height: '100%',
                             display: 'flex',
@@ -99,12 +100,13 @@ const HoleInput = ({ players, currentHole, onCompleteHole }) => {
                             style={{
                                 background: 'var(--neon-red)',
                                 border: 'none',
-                                width: '40px',
+                                width: '25px',
                                 height: '100%',
                                 cursor: 'pointer',
                                 fontWeight: 'bold',
-                                fontSize: '1.5rem',
-                                color: 'black'
+                                fontSize: '1rem',
+                                color: 'black',
+                                padding: 0
                             }}
                         >+</button>
                     </div>
@@ -113,14 +115,14 @@ const HoleInput = ({ players, currentHole, onCompleteHole }) => {
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                         <button
                             onClick={() => handleChange(p.id, 'penalties', Math.max(0, (inputs[p.id]?.penalties || 0) - 1))}
-                            style={{ background: '#555', color: 'white', border: 'none', width: '30px', height: '30px', cursor: 'pointer', fontWeight: 'bold' }}
+                            style={{ background: '#555', color: 'white', border: 'none', width: '20px', height: '20px', cursor: 'pointer', fontWeight: 'bold', fontSize: '0.8rem', padding: 0 }}
                         >-</button>
-                        <span style={{ margin: '0 10px', color: 'var(--neon-red)', fontSize: '1.2rem' }}>
+                        <span style={{ margin: '0 5px', color: 'var(--neon-red)', fontSize: '0.9rem' }}>
                             {inputs[p.id]?.penalties || 0}
                         </span>
                         <button
                             onClick={() => handleChange(p.id, 'penalties', (inputs[p.id]?.penalties || 0) + 1)}
-                            style={{ background: '#555', color: 'white', border: 'none', width: '30px', height: '30px', cursor: 'pointer', fontWeight: 'bold' }}
+                            style={{ background: '#555', color: 'white', border: 'none', width: '20px', height: '20px', cursor: 'pointer', fontWeight: 'bold', fontSize: '0.8rem', padding: 0 }}
                         >+</button>
                     </div>
 
@@ -132,15 +134,16 @@ const HoleInput = ({ players, currentHole, onCompleteHole }) => {
                             color: 'black',
                             border: 'none',
                             cursor: 'pointer',
-                            height: '40px',
-                            fontSize: '0.8rem',
+                            height: '30px',
+                            fontSize: '0.6rem',
                             fontWeight: 'bold',
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
-                            boxShadow: '2px 2px 0px #000'
+                            boxShadow: '1px 1px 0px #000',
+                            padding: '0'
                         }}
-                        title="버디! (나머지 플레이어 벌주 +1)"
+                        title="버디!"
                     >
                         버디
                     </button>
@@ -151,28 +154,27 @@ const HoleInput = ({ players, currentHole, onCompleteHole }) => {
                 onClick={handleSubmit}
                 style={{
                     width: '100%',
-                    padding: '15px',
+                    padding: '10px',
                     backgroundColor: 'var(--neon-green)',
                     color: 'black',
                     border: 'none',
                     fontFamily: 'var(--pixel-font)',
-                    fontSize: '1.2rem',
+                    fontSize: '1rem',
                     cursor: 'pointer',
-                    marginTop: '20px',
-                    boxShadow: '4px 4px 0px #000'
+                    marginTop: '10px',
+                    boxShadow: '2px 2px 0px #000'
                 }}
             >
                 HOLE COMPLETE ▶
             </button>
 
             {/* Rule Summary */}
-            <div style={{ marginTop: '20px', borderTop: '1px dashed #555', paddingTop: '10px', fontSize: '0.8rem', color: '#aaa' }}>
-                <h4 style={{ margin: '0 0 5px 0', color: 'white' }}>[ 벌주 규칙 요약 ]</h4>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
-                    <span>🌊 해저드/OB: +1잔</span>
-                    <span>🏖️ 벙커: +1잔</span>
-                    <span>⛳ 쓰리펏: +1잔</span>
-                    <span>🧅 양파: +2잔</span>
+            <div style={{ marginTop: '10px', borderTop: '1px dashed #555', paddingTop: '5px', fontSize: '0.6rem', color: '#aaa' }}>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '5px', justifyContent: 'center' }}>
+                    <span>🌊해저드/OB:+1</span>
+                    <span>🏖️벙커:+1</span>
+                    <span>⛳3펏:+1</span>
+                    <span>🧅양파:+2</span>
                 </div>
             </div>
         </div>
