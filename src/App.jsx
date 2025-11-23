@@ -102,88 +102,89 @@ function App() {
     }
   };
 
-  return <div style={{
-    width: '100%',
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    paddingTop: '10px', // Reduced from 20px
-    paddingBottom: '10px', // Reduced from 20px
-    overflowY: 'auto'
-  }}>
-    <Header showTitle={gameState === 'SETUP'} />
+  return (
+    <div style={{
+      width: '100%',
+      height: '100%',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      paddingTop: '10px', // Reduced from 20px
+      paddingBottom: '10px', // Reduced from 20px
+      overflowY: 'auto'
+    }}>
+      <Header showTitle={gameState === 'SETUP'} />
 
-    {
-      gameState === 'SETUP' && (
-        <div style={{ width: '90%', maxWidth: '600px' }}>
-          <PlayerManager
-            players={players}
-            onAddPlayer={addPlayer}
-            onRemovePlayer={removePlayer}
-            selectedPlayerId={null}
-            onSelectPlayer={() => { }}
-          />
-          <button
-            onClick={startGame}
-            style={{
-              width: '100%',
-              padding: '15px',
-              backgroundColor: 'var(--neon-green)',
-              color: 'black',
-              border: 'none',
-              fontFamily: 'var(--pixel-font)',
-              fontSize: '1.5rem',
-              cursor: 'pointer',
-              marginTop: '20px',
-              boxShadow: '4px 4px 0px #000',
-              pointerEvents: 'auto'
-            }}
-          >
-            GAME START ▶
-          </button>
-          <WarningPopup />
-        </div>
-      )
-    }
-
-    {
-      (gameState === 'PLAYING' || gameState === 'SETTLEMENT' || gameState === 'FINISHED') && (
-        <div style={{ width: '95%', maxWidth: '1000px' }}>
-          <Scorecard players={players} currentHole={currentHole} />
-
-          {gameState === 'PLAYING' && (
-            <HoleInput
+      {
+        gameState === 'SETUP' && (
+          <div style={{ width: '90%', maxWidth: '600px' }}>
+            <PlayerManager
               players={players}
-              currentHole={currentHole}
-              onCompleteHole={handleHoleComplete}
+              onAddPlayer={addPlayer}
+              onRemovePlayer={removePlayer}
+              selectedPlayerId={null}
+              onSelectPlayer={() => { }}
             />
-          )}
-        </div>
-      )
-    }
-
-    {
-      gameState === 'SETTLEMENT' && (
-        <SettlementModal results={settlementResults} onNext={nextHole} />
-      )
-    }
-
-    {
-      gameState === 'FINISHED' && (
-        <div className="pixel-box" style={{ textAlign: 'center', padding: '2rem', border: '4px solid var(--neon-yellow)' }}>
-          <h2 className="text-neon-yellow" style={{ fontSize: '2rem' }}>🏆 GAME OVER 🏆</h2>
-          <div style={{ fontSize: '1.5rem', margin: '20px 0' }}>
-            Winner: <span className="text-neon-green">
-              {players.sort((a, b) => a.totalDrinks - b.totalDrinks)[0].name}
-            </span>
+            <button
+              onClick={startGame}
+              style={{
+                width: '100%',
+                padding: '15px',
+                backgroundColor: 'var(--neon-green)',
+                color: 'black',
+                border: 'none',
+                fontFamily: 'var(--pixel-font)',
+                fontSize: '1.5rem',
+                cursor: 'pointer',
+                marginTop: '20px',
+                boxShadow: '4px 4px 0px #000',
+                pointerEvents: 'auto'
+              }}
+            >
+              GAME START ▶
+            </button>
+            <WarningPopup />
           </div>
-          <p>가장 적게 마신 당신이 승자!</p>
-          <button onClick={() => window.location.reload()} style={{ padding: '10px', cursor: 'pointer' }}>RESTART</button>
-        </div>
-      )
-    }
-  </div >
+        )
+      }
+
+      {
+        (gameState === 'PLAYING' || gameState === 'SETTLEMENT' || gameState === 'FINISHED') && (
+          <div style={{ width: '95%', maxWidth: '1000px' }}>
+            <Scorecard players={players} currentHole={currentHole} />
+
+            {gameState === 'PLAYING' && (
+              <HoleInput
+                players={players}
+                currentHole={currentHole}
+                onCompleteHole={handleHoleComplete}
+              />
+            )}
+          </div>
+        )
+      }
+
+      {
+        gameState === 'SETTLEMENT' && (
+          <SettlementModal results={settlementResults} onNext={nextHole} />
+        )
+      }
+
+      {
+        gameState === 'FINISHED' && (
+          <div className="pixel-box" style={{ textAlign: 'center', padding: '2rem', border: '4px solid var(--neon-yellow)' }}>
+            <h2 className="text-neon-yellow" style={{ fontSize: '2rem' }}>🏆 GAME OVER 🏆</h2>
+            <div style={{ fontSize: '1.5rem', margin: '20px 0' }}>
+              Winner: <span className="text-neon-green">
+                {players.sort((a, b) => a.totalDrinks - b.totalDrinks)[0].name}
+              </span>
+            </div>
+            <p>가장 적게 마신 당신이 승자!</p>
+            <button onClick={() => window.location.reload()} style={{ padding: '10px', cursor: 'pointer' }}>RESTART</button>
+          </div>
+        )
+      }
+    </div >
   );
 }
 
